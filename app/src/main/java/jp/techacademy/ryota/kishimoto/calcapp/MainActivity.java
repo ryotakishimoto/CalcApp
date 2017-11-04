@@ -34,25 +34,36 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        int a = Integer.parseInt(mEditText1.getText().toString());
-        int b = Integer.parseInt(mEditText2.getText().toString());
 
-        if (v.getId() == R.id.button1) {
-            Intent intent = new Intent(this, SecondActivity.class);
-            intent.putExtra("VALUE1", a+b);
-            startActivity(intent);
-        } else if (v.getId() == R.id.button2) {
-            Intent intent = new Intent(this, SecondActivity.class);
-            intent.putExtra("VALUE1", a-b);
-            startActivity(intent);
-        } else if (v.getId() == R.id.button3) {
-            Intent intent = new Intent(this, SecondActivity.class);
-            intent.putExtra("VALUE1", a*b);
-            startActivity(intent);
-        } else if (v.getId() == R.id.button4) {
-            Intent intent = new Intent(this, SecondActivity.class);
-            intent.putExtra("VALUE1", a/b);
-            startActivity(intent);
+        if ((mEditText1.getText().toString().equals("")) || (mEditText2.getText().toString().equals(""))
+                ||(mEditText1.getText().toString().equals("."))||(mEditText2.getText().toString().equals(".") )){
+            System.out.println("数値を入力してください");
+        }else{
+            double a = Double.parseDouble(mEditText1.getText().toString());
+            double b = Double.parseDouble(mEditText2.getText().toString());
+
+                if (v.getId() == R.id.button1) {
+                    Intent intent = new Intent(this, SecondActivity.class);
+                    intent.putExtra("VALUE1", a + b);
+                    startActivity(intent);
+                } else if (v.getId() == R.id.button2) {
+                    Intent intent = new Intent(this, SecondActivity.class);
+                    intent.putExtra("VALUE1", a - b);
+                    startActivity(intent);
+                } else if (v.getId() == R.id.button3) {
+                    Intent intent = new Intent(this, SecondActivity.class);
+                    intent.putExtra("VALUE1", a * b);
+                    startActivity(intent);
+                } else if (v.getId() == R.id.button4) {
+                    if(b==0){
+                        System.out.println("0以外の数値を入力してください");
+                    }else {
+                        Intent intent = new Intent(this, SecondActivity.class);
+                        intent.putExtra("VALUE1", a / b);
+                        startActivity(intent);
+                    }
+                }
+            }
         }
     }
-}
+
